@@ -69,7 +69,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
-window.addEventListener("load", loadFortune);
+
 
 app.get('/', function (req, res) {
   res.render('index', {fortune: null, error: null});
@@ -113,7 +113,7 @@ app.get('/get', function (req, res) {
     res.render('index', {fortune: null, error: null});
   })
   
-var loadFortune = app.post('/get', function (req, res) {
+window.addEvenListener("load", app.post('/get', function (req, res) {
   
   let fortune = req.body.getFortune;
 
@@ -153,7 +153,7 @@ var loadFortune = app.post('/get', function (req, res) {
       });
   }
   
-})
+}))
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
