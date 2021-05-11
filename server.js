@@ -69,6 +69,8 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
+window.addEventListener("load", loadFortune);
+
 app.get('/', function (req, res) {
   res.render('index', {fortune: null, error: null});
 })
@@ -111,7 +113,7 @@ app.get('/get', function (req, res) {
     res.render('index', {fortune: null, error: null});
   })
   
-app.post('/get', function (req, res) {
+var loadFortune = app.post('/get', function (req, res) {
   
   let fortune = req.body.getFortune;
 
