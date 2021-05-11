@@ -112,8 +112,8 @@ var params = {
 app.get('/get', function (req, res) {
     res.render('index', {fortune: null, error: null});
   })
-  
-window.addEvenListener("load", app.post('/get', function (req, res) {
+
+app.post('/get', function (req, res) {
   
   let fortune = req.body.getFortune;
 
@@ -153,7 +153,7 @@ window.addEvenListener("load", app.post('/get', function (req, res) {
       });
   }
   
-}))
+})
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
