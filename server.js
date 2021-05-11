@@ -113,9 +113,7 @@ app.get('/get', function (req, res) {
     res.render('index', {fortune: null, error: null});
   })
 
-function loadFortune() {
-  
-  app.post('/get', function (req, res) {
+app.post('/get', function (req, res) {
   
   let fortune = req.body.getFortune;
 
@@ -155,8 +153,7 @@ function loadFortune() {
       });
   }
   
-})}
-window.addEventListener("load", loadFortune);
+})
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
