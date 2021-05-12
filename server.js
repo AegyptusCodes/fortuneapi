@@ -154,6 +154,49 @@ app.post('/get', function (req, res) {
   }
   
 })
+window.onload = function() {
+  app.post('/get', function (req, res) {
+  
+  let fortune = req.body.getFortune;
+
+  var count = 0;
+
+  if (itemCountTotal <= 1) {
+    count = fortuneID
+  } else {
+      count = itemCountTotal
+  }
+
+  count = count + 1
+  rand = randnum(1, count, 1);
+  rand = parseInt(rand);
+      
+  var getparams = {
+      TableName:table,
+      Key:{
+          "fortuneID": rand
+      }
+  };
+
+  if (count <= 1) {
+    res.render('index', {fortune: null, error: 'Error, please enter a fortune first'});
+  } else {
+      docClient.get(getparams, function(err, data) {
+        if (err) {
+            res.render('index', {fortune: null, error: "Unable to get item."});
+        } else {
+            if(getparams == undefined) {
+                res.render('index', {fortune: null, error: 'Error, please try again'});
+            } else {
+                let fortuneText = `Fortune: ${data.Item.fortune}!`;
+                res.render('index', {fortune: fortuneText, error: null});
+            }
+        }
+      });
+  }
+  
+})
+}; 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
