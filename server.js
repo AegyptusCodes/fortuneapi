@@ -9,6 +9,7 @@ var async = require('async');
 var AWS = require("aws-sdk");
 var randnum = require('random-number-between');
 
+//Set path for database
 AWS.config.update({
   region: "us-east-2",
   endpoint: "https://dynamodb.us-east-2.amazonaws.com"
@@ -74,7 +75,7 @@ app.set('view engine', 'ejs')
 app.get('/', function (req, res) {
   res.render('index', {fortune: null, error: null});
 })
-
+//add fortune to db
 app.post('/', function (req, res) {
 
 let fortune = req.body.newFortune;
@@ -112,7 +113,7 @@ var params = {
 app.get('/get', function (req, res) {
     res.render('index', {fortune: null, error: null});
   })
-
+//get fortune from db
 app.post('/get', function (req, res) {
   
   let fortune = req.body.getFortune;
