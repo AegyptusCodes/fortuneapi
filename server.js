@@ -77,7 +77,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 })*/
 //add fortune to db
 app.post('/', function (req, res) {
-
+console.log(req);
+    console.log(req.body);
 let fortune = req.body;
 
 if (itemCountTotal >= 1) {
@@ -106,6 +107,7 @@ var params = {
         } else {
             let fortuneText = `Fortune: ${params.Item.fortune}, added!`;
             res.json(fortuneText);
+            console.log(fortuneText);
             //res.render('index', {fortune: fortuneText, error: null});
         }
     }
