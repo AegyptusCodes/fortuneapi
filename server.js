@@ -68,18 +68,17 @@ async.until( function() { return scanComplete; },
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.set('view engine', 'ejs')
+app.set('view engine', 'ejs')
 
 
 
-/*app.get('/', function (req, res) {
+app.get('/', function (req, res) {
   res.render('index', {fortune: null, error: null});
-})*/
+})
 //add fortune to db
 app.post('/', function (req, res) {
-console.log(req);
-    console.log(req.body);
-let fortune = req.body;
+
+let fortune = req.body.newFortune;
 
 if (itemCountTotal >= 1) {
     fortuneID = itemCountTotal
@@ -98,26 +97,22 @@ var params = {
 
   docClient.put(params, function(err, data) {
     if (err) {
-        res.json({messgae: 'Unable to add fortune'});
-        //res.render('index', {fortune: null, error: "Unable to add item."});
+        res.render('index', {fortune: null, error: "Unable to add item."});
     } else {
         if(params == undefined) {
-            res.json({messgae: 'Please try again'})
-            //res.render('index', {fortune: null, error: 'Error, please try again'});
+           res.render('index', {fortune: null, error: 'Error, please try again'});
         } else {
             let fortuneText = `Fortune: ${params.Item.fortune}, added!`;
-            res.json(fortuneText);
-            console.log(fortuneText);
-            //res.render('index', {fortune: fortuneText, error: null});
+            res.render('index', {fortune: fortuneText, error: null});
         }
     }
   });
 
 })
 
-/*app.get('/get', function (req, res) {
+app.get('/get', function (req, res) {
     res.render('index', {fortune: null, error: null});
-  })*/
+  })
 //get fortune from db
 app.post('/get', function (req, res) {
   
@@ -143,21 +138,17 @@ app.post('/get', function (req, res) {
   };
 
   if (count <= 1) {
-    res.json({messgae: 'Enter a fortune'})                                      
-    //res.render('index', {fortune: null, error: 'Error, please enter a fortune first'});
+    res.render('index', {fortune: null, error: 'Error, please enter a fortune first'});
   } else {
       docClient.get(getparams, function(err, data) {
         if (err) {
-            res.json({messgae: 'Unable to get fortune'})         
-            //res.render('index', {fortune: null, error: "Unable to get item."});
+            res.render('index', {fortune: null, error: "Unable to get item."});
         } else {
             if(getparams == undefined) {
-                res.json({messgae: 'Error please try again'})  
-                //res.render('index', {fortune: null, error: 'Error, please try again'});
+                res.render('index', {fortune: null, error: 'Error, please try again'});
             } else {
                 let fortuneText = `Fortune: ${data.Item.fortune}!`;
-                res.json(fortuneText);
-                //res.render('index', {fortune: fortuneText, error: null});
+                res.render('index', {fortune: fortuneText, error: null});
             }
         }
       });
