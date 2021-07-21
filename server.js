@@ -77,8 +77,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 })*/
 //add fortune to db
 app.post('/', function (req, res) {
-
-let fortune = req.body.newFortune;
+console.log(req);
+    console.log(req.body);
+let fortune = req.body;
 
 if (itemCountTotal >= 1) {
     fortuneID = itemCountTotal
@@ -106,6 +107,7 @@ var params = {
         } else {
             let fortuneText = `Fortune: ${params.Item.fortune}, added!`;
             res.json(fortuneText);
+            console.log(fortuneText);
             //res.render('index', {fortune: fortuneText, error: null});
         }
     }
@@ -113,9 +115,9 @@ var params = {
 
 })
 
-app.get('/get', function (req, res) {
+/*app.get('/get', function (req, res) {
     res.render('index', {fortune: null, error: null});
-  })
+  })*/
 //get fortune from db
 app.post('/get', function (req, res) {
   
