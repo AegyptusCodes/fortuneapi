@@ -77,9 +77,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 })*/
 //add fortune to db
 app.post('/', function (req, res) {
-console.log(req);
+    console.log(req);
     console.log(req.body);
-let fortune = req.body;
+let fortune = JSON.stingify(req.body);
 
 if (itemCountTotal >= 1) {
     fortuneID = itemCountTotal
