@@ -79,7 +79,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/', function (req, res) {
     console.log(req);
     console.log(req.body);
-let fortune = JSON.stringify(req.body);
+let fortune = JSON.stringify(req.body.fortune);
 
 if (itemCountTotal >= 1) {
     fortuneID = itemCountTotal                              
