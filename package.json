@@ -8,13 +8,17 @@
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.490.0",
     "async": "^2.6.1",
-    "aws-sdk": "^2.250.1",
+    "aws-sdk": "^2.1537.0",
+    "aws4": "^1.12.0",
+    "axios": "^1.6.5",
     "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
+    "ejs": "^3.1.9",
     "express": "^4.16.3",
-    "random-number-between": "^1.0.3",
-    "request": "^2.87.0"
+    "got": "^14.0.0",
+    "random-number-between": "^1.0.3"
   }
 }
